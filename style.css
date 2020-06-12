@@ -1,9 +1,8 @@
 html, body{
-  
-    background: #FAF9F0;
-
+  margin: 0;
+  background: #FAF9F0;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 .sidenav {
   height: 100%;
@@ -68,25 +67,8 @@ hr.divider {
   border-top: 1px solid #bbb;
   margin-left:25%;
   margin-right: 25%;
+  opacity: 0.3;
 }
-
-/*.button1 {
-  background-color: white;
-  border: 1px solid grey;
-  color: #4CAF50;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 30px;
-  width:30%;
-  display: flex;
-  justify-content: center;
-}
-*/
 
 .wrap {
   height: 100%;
@@ -252,49 +234,44 @@ hr { border-top: 1px solid #e4e7e9; margin-bottom: 50px; margin-top: 50px; }
 .form-control:focus { color: #011c28; outline: 0; box-shadow: 0 0 0 0.0rem rgb(255, 255, 255); border-color: #c9cdd0; background-color: #f0f4f6; }
 
 
-.footer { 
-  background-color: #3D405B; 
-  padding-top: 80px; 
-  color: #636e74; 
-  font-weight: 400; 
-  font-size: 17px; 
+footer {
+  background-color: #2C3E50;
+  color:  #fff;
+  font-size: 1.5em;
+  text-align: center;
+  padding:3%;
 }
-.footer-line { 
-  border-color: #152e3d; 
+a.tel,a.tel:hover
+{
+  text-decoration:none;
+  color:#fff;
 }
-.footer-widget { 
-  padding-bottom: 50px; 
+.address-container{
+	display: inline-block;
+	margin: 0 auto;
 }
-.footer-title { 
-  font-size: 24px; 
-  font-weight: 600; 
-  margin-bottom: 44px; 
-  color: #fff; 
-}
-.footer-widget ul li a {  
-  font-size: 20px; 
-  color: white; 
-  display: block; 
-  font-weight: 600; 
-}
-.footer-widget ul li a:hover { 
-  color: grey; 
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: transparent!important;
 }
 
-.tiny-footer { 
-  font-size: 20px; 
-  padding: 14px 0px; 
-  font-weight: 600; 
-  background-color: transparent; 
-  border-top: 1px solid #152e3d; 
-  color: #888d90; 
-  line-height: 1; 
+
+hr.footer-hr
+{
+  width:150px;
+}
+hr.copyright
+{
+  opacity:0.1;
+}
+.footer-greets {
+  opacity: 0.2;
 }
 
 .vertical-divider{
- margin-left:50%;
- width:1px;
- height:60%;
- border-left:2px solid white;
- float: center;
-}
+  margin-left:50%;
+  width:1px;
+  height:60%;
+  border-left:2px solid white;
+  float: center;
