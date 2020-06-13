@@ -38,4 +38,8 @@ window.addEventListener("scroll", event => {
   });
 });
 
-
+$("button").click(function() {
+  $('html,body').animate({
+      scrollTop: $(".second").offset().top},
+      'slow');
+});
