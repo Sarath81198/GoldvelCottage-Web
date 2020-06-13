@@ -111,7 +111,9 @@ hr.divider {
   padding: 20px;
 }
 
-
+.m-50{
+  margin : 50px
+}
 
 @import url(https://fonts.googleapis.com/css?family=Merriweather);
 *,
