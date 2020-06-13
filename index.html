@@ -268,6 +268,7 @@
             </form>
           </section>
           
+          <div id="map" style="margin-left:auto; margin-right:auto; center; width:70%;height:400px;"></div>
           
 
 
@@ -281,7 +282,7 @@
     <footer>
       <div class="container footer-container">
         <div class="row footer-row">
-          <div class="col-xs-12 col-sm-6 col-md-6 text-center">
+          <div class="col-xs-12 col-sm-6 col-md-6 text-left">
             <address>
               <ul class="list-unstyled">
                 <li><a class="tel" href="#">83, Sannathi Road Adivaram,</a></li>
@@ -308,6 +309,7 @@
                   <input type="number" name="news-email" id="news-email" placeholder="Contact Number...">
                   <button class="btn btn-default btn-primary" style="margin-top: 10px;"><i class="fa fa-paper-plane"></i> Send</button>
                 </form>
+                
               </div>
             </div>
           </div>
@@ -324,7 +326,21 @@
 
 
 
-
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      // The location of Uluru
+      var uluru = {lat: -25.344, lng: 131.036};
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 4, center: uluru});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdiPbhaQAGS82Pm1GezHolcBiLFlrTRXU&callback=initMap">
+        </script>
    
 
   	 
