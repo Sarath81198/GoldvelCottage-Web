@@ -26,8 +26,8 @@ $rooms_final_price['single_bed_non_ac'] = 455;
 
     <title>Goldvel Cottage</title>
     <style>
-        html {
-            background-color: #171717
+        body {
+            background-color: #171717;
         }
 
         .mt-100 {
@@ -39,15 +39,16 @@ $rooms_final_price['single_bed_non_ac'] = 455;
         }
 
         .hr-grey {
-            padding-top:30px;
-            padding-bottom:30px;
-            border-bottom: 2px solid grey ;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid grey;
         }
     </style>
 </head>
 
 <body>
-    <div style="height: 60px; position:fixed; z-index:10000; background-color: #303030; width: 100%; box-shadow: 0px 1px 8px 0px #888888;">
+    
+    <div style="top:0px;height: 60px; position:fixed; z-index:10000; background-color: #303030; width: 100%; box-shadow: 0px 1px 8px 0px #888888;">
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
@@ -55,6 +56,7 @@ $rooms_final_price['single_bed_non_ac'] = 455;
             </div>
             <div class="col-2"></div>
         </div>
+    </div>
         <center>
             <div class="container mt-100">
                 <div name="double_bed_ac">
@@ -103,6 +105,56 @@ $rooms_final_price['single_bed_non_ac'] = 455;
                     </form>
                 </div>
                 <div class="hr-grey"></div>
+
+
+
+
+                <div name="double_bed_ac">
+                    <h2 class="text-light"><b>Single Bed A/C</b></h2>
+                    <form id="singleBedAcForm">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="singleBedAcOffer" onchange="offerCheckbox('singleBedAc')" checked>
+                                <label class="form-check-label" for="gridCheck">
+                                    Is there any offer?
+                                </label>
+                            </div>
+                        </div>
+                        <div id="singleBedAcOfferDiv">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Orignal Price:</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">₹</span>
+                                        </div>
+                                        <input type="text" id="singleBedAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedAc')">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4" class="text-warning">Offer (%): </label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="singleBedAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedAc')">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon1">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress" class="text-success"><b>Final Price:</b></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">₹</span>
+                                </div>
+                                <input type="text" id="singleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
+                    </form>
+                </div>
+                <div class="hr-grey"></div>
             </div>
         </center>
 
@@ -117,6 +169,13 @@ $rooms_final_price['single_bed_non_ac'] = 455;
                         offerDiv = document.getElementById("doubleBedAcOfferDiv")
                         finalPriceInput = document.getElementById("doubleBedAcFinalPriceInput")
                         form = document.getElementById("doubleBedAcForm")
+                        break;
+
+                    case 'singleBedAc':
+                        offerCheckboxInput = document.getElementById("singleBedAcOffer")
+                        offerDiv = document.getElementById("singleBedAcOfferDiv")
+                        finalPriceInput = document.getElementById("singleBedAcFinalPriceInput")
+                        form = document.getElementById("singleBedAcForm")
                         break;
 
                     default:
@@ -142,6 +201,10 @@ $rooms_final_price['single_bed_non_ac'] = 455;
                         var offerPercentage = parseInt(document.getElementById("doubleBedAcOfferInput").value)
                         break;
 
+                    case 'singleBedAc':
+                        var originalPrice = parseInt(document.getElementById("singleBedAcOriginalPrice").value)
+                        var offerPercentage = parseInt(document.getElementById("singleBedAcOfferInput").value)
+                        break;
                     default:
                         break;
                 }
@@ -153,6 +216,10 @@ $rooms_final_price['single_bed_non_ac'] = 455;
                 switch (typeOfRoom) {
                     case 'doubleBedAc':
                         document.getElementById("doubleBedAcFinalPriceInput").value = finalPrice
+                        break;
+
+                    case 'singleBedAc':
+                        document.getElementById("singleBedAcFinalPriceInput").value = finalPrice
                         break;
 
                     default:
