@@ -27,7 +27,7 @@ $rooms_final_price['single_bed_non_ac'] = 455;
     <title>Goldvel Cottage</title>
     <style>
         html {
-            background-color: grey
+            background-color: #171717
         }
 
         .mt-100 {
@@ -36,6 +36,12 @@ $rooms_final_price['single_bed_non_ac'] = 455;
 
         label {
             color: white
+        }
+
+        .hr-grey {
+            padding-top:30px;
+            padding-bottom:30px;
+            border-bottom: 2px solid grey ;
         }
     </style>
 </head>
@@ -52,8 +58,8 @@ $rooms_final_price['single_bed_non_ac'] = 455;
         <center>
             <div class="container mt-100">
                 <div name="double_bed_ac">
+                    <h2 class="text-light"><b>Double Bed A/C</b></h2>
                     <form id="doubleBedAcForm">
-
                         <div class="form-group">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="doubleBedAcOffer" onchange="offerCheckbox('doubleBedAc')" checked>
@@ -74,7 +80,7 @@ $rooms_final_price['single_bed_non_ac'] = 455;
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Offer (%): </label>
+                                    <label for="inputPassword4" class="text-warning">Offer (%): </label>
                                     <div class="input-group mb-3">
                                         <input type="text" id="doubleBedAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedAc')">
                                         <div class="input-group-append">
@@ -85,17 +91,18 @@ $rooms_final_price['single_bed_non_ac'] = 455;
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress"><b>Final Price:</b></label>
+                            <label for="inputAddress" class="text-success"><b>Final Price:</b></label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₹</span>
                                 </div>
-                                <input type="text" id="doubleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" value="<?php echo $rooms_final_price['double_bed_ac']; ?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
+                                <input type="text" id="doubleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
                     </form>
                 </div>
+                <div class="hr-grey"></div>
             </div>
         </center>
 
