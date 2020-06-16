@@ -1,3 +1,9 @@
+<?php 
+error_reporting(0);
+session_start();
+$logged_in = $_SESSION['login_status'];
+if(!$logged_in){
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,3 +34,9 @@
       </body>
 </body>
 </html>
+<?php
+}
+else{
+  header("Location: ./dashboard.php");
+}
+?>
