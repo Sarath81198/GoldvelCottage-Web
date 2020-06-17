@@ -36,9 +36,9 @@ try {
   <div id="mySidenav" class="sidenav" style="z-index: 10001;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#about">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#contact">Contact</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
   </div>
 
   <div style="height: 60px; position:fixed; z-index:10000; background-color: white; width: 100%; box-shadow: 0px 1px 8px 0px #888888;">
@@ -115,6 +115,7 @@ try {
       <hr class="divider">
   </section>
   <center>
+    <section id="rooms">
     <div class="container">
       <div class="row">
         <div class="col-sm m-50">
@@ -221,11 +222,14 @@ try {
         </div>
       </div>
     </div>
+<section>
   </center>
   <div class="wrap">
 
     <!-- Button trigger modal -->
+    <section id="gallery">
     <button type="button" class="button shadow-lg" data-toggle="modal" data-target=".cd-example-modal-lg"><b>View Gallery</b></button>
+      <section>
     <!-- Modal -->
     <div class="modal fade cd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
