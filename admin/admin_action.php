@@ -9,13 +9,17 @@ if(isset($_POST['submit'])){
         $_SESSION['login_status'] = 1;
         header("Location: ./dashboard.php");
     } else {
-        $_SESSION['error'] = "Login failed";
+        $_SESSION['fail'] = "Login failed. Please try again";
         header("Location: ./login.php");
     }
 }
 
 if(isset($_POST['logout'])){
-    $_SESSION['login_status'] = 0;
-    $_SESSION['success'] = "Successfully logged out!";
+    if($_SESSION['login_status'] = 0){
+        $_SESSION['success'] = "Successfully logged out!";
+    }
+    else{
+        $_SESSION['fail'] = "Something went wrong. Please try again.";
+    }
     header("Location: ./login.php");
 }

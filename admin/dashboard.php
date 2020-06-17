@@ -14,8 +14,6 @@ if ($logged_in) {
         throw $th;
     }
 ?>
-
-    ?>
     <!doctype html>
     <html lang="en">
 
@@ -69,6 +67,34 @@ if ($logged_in) {
                 </div>
             </div>
         </div>
+<!-- Alerts -->
+
+        <?php
+        if (isset($_SESSION['success'])) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show" style="margin:70px" role="alert">
+                <?php echo $_SESSION['success']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        unset($_SESSION['success']);
+        }
+        elseif (isset($_SESSION['fail'])) {
+        ?>
+        <div class="alert alert-danger alert-dismissible fade show" style="margin:70px" role="alert">
+                <?php echo $_SESSION['fail']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+            unset($_SESSION['fail']);
+        }
+        ?>
+
+<!-- --------- -->
         <center>
             <div class="container mt-100">
                 <div name="double_bed_ac">
