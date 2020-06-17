@@ -84,10 +84,24 @@ try {
                 </center>
             </div>
             <div class="col-sm left-v-line pt-25">
+
                 <h2 class="dark-text"><b>Double Bed - A/C</b></h2>
+                <?php
+                if ($dba['has_offer']) {
+                ?>
+                    <div name="price">
+                        <h3 class="text-success pt-50"><b>₹ <?php echo $dba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                        <p class="text-success"><?php echo $dba['offer'] ?>% OFF</p>
+                        <h4 class="text-danger"><s>₹ <?php echo $dba['original_price'] ?> </s></h4>
+                    </div>
+                <?php
+                } else{
+                ?>
                 <h3 class="text-success pt-50"><b>₹ <?php echo $dba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
-                <p class="text-success"><?php echo $dba['offer'] ?>% OFF</p>
-                <h4 class="text-danger"><s>₹ <?php echo $dba['original_price'] ?> </s></h4>
+                <?php
+                } 
+                ?>
+
 
                 <div class="space"></div>
 

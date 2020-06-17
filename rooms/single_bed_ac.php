@@ -1,5 +1,5 @@
 <?php
-require "config.php";
+require "../config.php";
 
 try {
     $sba = $collection->findOne(array("room_type" => "sba"));
@@ -81,9 +81,21 @@ try {
             </div>
             <div class="col-sm left-v-line pt-25">
                 <h2 class="dark-text"><b>Single Bed - A/C</b></h2>
-                <h3 class="text-success pt-50"><b>₹ <?php echo $sba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
-                <p class="text-success"><?php echo $sba['offer'] ?>% OFF</p>
-                <h4 class="text-danger"><s>₹ <?php echo $sba['original_price'] ?> </s></h4>
+                <?php
+                if ($sba['has_offer']) {
+                ?>
+                    <div name="price">
+                        <h3 class="text-success pt-50"><b>₹ <?php echo $sba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                        <p class="text-success"><?php echo $sba['offer'] ?>% OFF</p>
+                        <h4 class="text-danger"><s>₹ <?php echo $sba['original_price'] ?> </s></h4>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <h3 class="text-success pt-50"><b>₹ <?php echo $sba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                <?php
+                }
+                ?>
 
                 <div class="space"></div>
 

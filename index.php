@@ -7,8 +7,8 @@ try {
   $dbna = $collection->findOne(array("room_type" => "dbna"));
   $sbna = $collection->findOne(array("room_type" => "sbna"));
 } catch (\Throwable $th) {
-  // header("Location: index.php");
-  throw $th;
+  header("Location: index.php");
+  // throw $th;
 }
 ?>
 <!doctype html>
@@ -122,11 +122,22 @@ try {
             <img class="card-img-top" src="./img/card_double_bed_ac.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><b>Double Bed - A/C</b></h5>
-              <p class="card-text">
-                <h3 class="text-success"><b>₹ <?php echo $dba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
-                <p class="text-success"><?php echo $dba['offer'] ?>% OFF</p>
-                <h4 class="text-danger"><s>₹ <?php echo $dba['original_price'] ?> </s></h4>
-              </p>
+              <?php
+              if ($dba['has_offer']) {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $dba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                  <p class="text-success"><?php echo $dba['offer'] ?>% OFF</p>
+                  <h4 class="text-danger"><s>₹ <?php echo $dba['original_price'] ?> </s></h4>
+                </p>
+              <?php } else {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $dba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                </p>
+              <?php
+              }
+              ?>
               <a href="./rooms/double_bed_ac.php" style="margin-top:50px" class="btn btn-success"><b>BOOK NOW</b></a>
             </div>
           </div>
@@ -136,11 +147,22 @@ try {
             <img class="card-img-top" src="./img/card_single_bed_ac.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><b>Single Bed - A/C</b></h5>
-              <p class="card-text">
-                <h3 class="text-success"><b>₹ <?php echo $sba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
-                <p class="text-success"><?php echo $sba['offer'] ?>% OFF</p>
-                <h4 class="text-danger"><s>₹ <?php echo $sba['original_price'] ?> </s></h4>
-              </p>
+              <?php
+              if ($sba['has_offer']) {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $sba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                  <p class="text-success"><?php echo $sba['offer'] ?>% OFF</p>
+                  <h4 class="text-danger"><s>₹ <?php echo $sba['original_price'] ?> </s></h4>
+                </p>
+              <?php } else {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $sba['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                </p>
+              <?php
+              }
+              ?>
               <a href="./rooms/single_bed_ac.php" style="margin-top:50px" class="btn btn-success"><b>BOOK NOW</b></a>
             </div>
           </div>
@@ -152,11 +174,22 @@ try {
             <img class="card-img-top" src="./img/card_double_bed_non_ac.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><b>Double Bed - Non A/C</b></h5>
-              <p class="card-text">
-                <h3 class="text-success"><b>₹ <?php echo $dbna['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
-                <p class="text-success"><?php echo $dbna['offer'] ?>% OFF</p>
-                <h4 class="text-danger"><s>₹ <?php echo $dbna['original_price'] ?> </s></h4>
-              </p>
+              <?php
+              if ($dbna['has_offer']) {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $dbna['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                  <p class="text-success"><?php echo $dbna['offer'] ?>% OFF</p>
+                  <h4 class="text-danger"><s>₹ <?php echo $dbna['original_price'] ?> </s></h4>
+                </p>
+              <?php } else {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $dbna['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                </p>
+              <?php
+              }
+              ?>
               <a href="./rooms/double_bed_non_ac.php" style="margin-top:50px" class="btn btn-success"><b>BOOK NOW</b></a>
             </div>
           </div>
@@ -166,11 +199,22 @@ try {
             <img class="card-img-top" src="./img/card_single_bed_non_ac.jpg" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"><b>Single Bed - Non A/C</b></h5>
-              <p class="card-text">
-                <h3 class="text-success"><b>₹ <?php echo $sbna['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
-                <p class="text-success"><?php echo $sbna['offer'] ?>% OFF</p>
-                <h4 class="text-danger"><s>₹ <?php echo $sbna['original_price'] ?> </s></h4>
-              </p>
+              <?php
+              if ($sbna['has_offer']) {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $sbna['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                  <p class="text-success"><?php echo $sbna['offer'] ?>% OFF</p>
+                  <h4 class="text-danger"><s>₹ <?php echo $sbna['original_price'] ?> </s></h4>
+                </p>
+              <?php } else {
+              ?>
+                <p class="card-text">
+                  <h3 class="text-success"><b>₹ <?php echo $sbna['offer_price'] ?> <i class="fa fa-tag"></i></b></h3>
+                </p>
+              <?php
+              }
+              ?>
               <a href="./rooms/single_bed_non_ac.php" style="margin-top:50px" class="btn btn-success"><b>BOOK NOW</b></a>
             </div>
           </div>

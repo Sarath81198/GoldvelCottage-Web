@@ -3,7 +3,19 @@ error_reporting(0);
 session_start();
 $logged_in = $_SESSION['login_status'];
 if ($logged_in) {
+    require "../config.php";
+    try {
+        $dba = $collection->findOne(array("room_type" => "dba"));
+        $sba = $collection->findOne(array("room_type" => "sba"));
+        $dbna = $collection->findOne(array("room_type" => "dbna"));
+        $sbna = $collection->findOne(array("room_type" => "sbna"));
+    } catch (\Throwable $th) {
+        // header("Location: index.php");
+        throw $th;
+    }
 ?>
+
+    ?>
     <!doctype html>
     <html lang="en">
 
@@ -61,10 +73,11 @@ if ($logged_in) {
             <div class="container mt-100">
                 <div name="double_bed_ac">
                     <h2 class="text-light"><b>Double Bed A/C</b></h2>
-                    <form id="doubleBedAcForm">
+                    <h4 class="text-primary">Current Price: ₹ <?php echo $dba['offer_price']; ?></h4>
+                    <form id="doubleBedAcForm" action="room_updation.php" method="POST">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="doubleBedAcOffer" onchange="offerCheckbox('doubleBedAc')" checked>
+                                <input class="form-check-input" type="checkbox" name="dba_offer" id="doubleBedAcOffer" onchange="offerCheckbox('doubleBedAc')" checked>
                                 <label class="form-check-label" for="gridCheck">
                                     Is there any offer?
                                 </label>
@@ -78,13 +91,13 @@ if ($logged_in) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">₹</span>
                                         </div>
-                                        <input type="text" id="doubleBedAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedAc')">
+                                        <input type="text" name="original_price" id="doubleBedAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedAc')">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="text-warning">Offer (%): </label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="doubleBedAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedAc')">
+                                        <input type="text" name="offer" id="doubleBedAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedAc')">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon1">%</span>
                                         </div>
@@ -98,10 +111,10 @@ if ($logged_in) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₹</span>
                                 </div>
-                                <input type="text" id="doubleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
+                                <input type="text" name="final_price" id="doubleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
+                        <button type="submit" name="dba_submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
                     </form>
                 </div>
                 <div class="hr-grey"></div>
@@ -111,10 +124,11 @@ if ($logged_in) {
 
                 <div name="single_bed_ac">
                     <h2 class="text-light" style="padding-top:30px"><b>Single Bed A/C</b></h2>
-                    <form id="singleBedAcForm">
+                    <h4 class="text-primary">Current Price: ₹ <?php echo $sba['offer_price']; ?></h4>
+                    <form id="singleBedAcForm" action="room_updation.php" method="POST">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="singleBedAcOffer" onchange="offerCheckbox('singleBedAc')" checked>
+                                <input class="form-check-input" type="checkbox" name="sba_offer" id="singleBedAcOffer" onchange="offerCheckbox('singleBedAc')" checked>
                                 <label class="form-check-label" for="gridCheck">
                                     Is there any offer?
                                 </label>
@@ -128,13 +142,13 @@ if ($logged_in) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">₹</span>
                                         </div>
-                                        <input type="text" id="singleBedAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedAc')">
+                                        <input type="text" name="original_price" id="singleBedAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedAc')">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="text-warning">Offer (%): </label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="singleBedAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedAc')">
+                                        <input type="text" name="offer" id="singleBedAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedAc')">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon1">%</span>
                                         </div>
@@ -148,10 +162,10 @@ if ($logged_in) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₹</span>
                                 </div>
-                                <input type="text" id="singleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
+                                <input type="text" name="final_price" id="singleBedAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
+                        <button type="submit" name="sba_submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
                     </form>
                 </div>
                 <div class="hr-grey"></div>
@@ -159,12 +173,13 @@ if ($logged_in) {
 
 
 
-                <div name="double_bed_non_ac">
-                    <h2 class="text-light" style="padding-top:30px"><b>Double Bed A/C</b></h2>
-                    <form id="doubleBedNonAcForm">
+                <div name="double_bed_non_ac" action="room_updation.php" method="POST">
+                    <h2 class="text-light" style="padding-top:30px"><b>Double Bed Non A/C</b></h2>
+                    <h4 class="text-primary">Current Price: ₹ <?php echo $dbna['offer_price']; ?></h4>
+                    <form id="doubleBedNonAcForm" action="room_updation.php" method="POST">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="doubleBedNonAcOffer" onchange="offerCheckbox('doubleBedNonAc')" checked>
+                                <input class="form-check-input" type="checkbox" name="dbna_offer" id="doubleBedNonAcOffer" onchange="offerCheckbox('doubleBedNonAc')" checked>
                                 <label class="form-check-label" for="gridCheck">
                                     Is there any offer?
                                 </label>
@@ -178,13 +193,13 @@ if ($logged_in) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">₹</span>
                                         </div>
-                                        <input type="text" id="doubleBedNonAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedNonAc')">
+                                        <input type="text" name="original_price" id="doubleBedNonAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedNonAc')">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="text-warning">Offer (%): </label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="doubleBedNonAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedNonAc')">
+                                        <input type="text" name="offer" id="doubleBedNonAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('doubleBedNonAc')">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon1">%</span>
                                         </div>
@@ -198,22 +213,23 @@ if ($logged_in) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₹</span>
                                 </div>
-                                <input type="text" id="doubleBedNonAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
+                                <input type="text" name="final_price" id="doubleBedNonAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
+                        <button type="submit" name="dbna_submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
                     </form>
                 </div>
                 <div class="hr-grey"></div>
 
 
 
-                <div name="single_bed_non_ac">
-                    <h2 class="text-light" style="padding-top:30px"><b>Single Bed A/C</b></h2>
-                    <form id="singleBedNonAcForm">
+                <div name="single_bed_non_ac" action="room_updation.php" method="POST">
+                    <h2 class="text-light" style="padding-top:30px"><b>Single Bed Non A/C</b></h2>
+                    <h4 class="text-primary">Current Price: ₹ <?php echo $sbna['offer_price']; ?></h4>
+                    <form id="singleBedNonAcForm" action="room_updation.php" method="POST">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="singleBedNonAcOffer" onchange="offerCheckbox('singleBedNonAc')" checked>
+                                <input class="form-check-input" type="checkbox" name="sbna_offer" id="singleBedNonAcOffer" onchange="offerCheckbox('singleBedNonAc')" checked>
                                 <label class="form-check-label" for="gridCheck">
                                     Is there any offer?
                                 </label>
@@ -227,13 +243,13 @@ if ($logged_in) {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">₹</span>
                                         </div>
-                                        <input type="text" id="singleBedNonAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedNonAc')">
+                                        <input type="text" name="original_price" id="singleBedNonAcOriginalPrice" class="form-control" placeholder="Original price" aria-label="original price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedNonAc')">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="text-warning">Offer (%): </label>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="singleBedNonAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedNonAc')">
+                                        <input type="text" name="offer" id="singleBedNonAcOfferInput" class="form-control" placeholder="Offer in percentage" aria-label="offer" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1'); calculateFinalPrice('singleBedNonAc')">
                                         <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon1">%</span>
                                         </div>
@@ -247,10 +263,10 @@ if ($logged_in) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₹</span>
                                 </div>
-                                <input type="text" id="singleBedNonAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" disabled>
+                                <input type="text" name="final_price" id="singleBedNonAcFinalPriceInput" class="form-control" placeholder="Final price" aria-label="final price" aria-describedby="basic-addon1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
+                        <button type="submit" name="sbna_submit" class="btn btn-success"><b>UPDATE PRICE</b></button>
                     </form>
                 </div>
                 <div class="hr-grey"></div>
@@ -298,12 +314,12 @@ if ($logged_in) {
 
                 if (offerCheckboxInput.checked) {
                     offerDiv.style.display = "block"
-                    finalPriceInput.disabled = true
+                    finalPriceInput.readOnly = true
                     form.reset()
 
                 } else {
                     offerDiv.style.display = "none"
-                    finalPriceInput.disabled = false
+                    finalPriceInput.readOnly = false
                     finalPriceInput.value = ""
                 }
             }
