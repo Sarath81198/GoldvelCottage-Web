@@ -40,7 +40,7 @@ try {
     <div style="height: 60px; position:fixed; z-index:100; background-color: white; width: 100%; box-shadow: 0px 1px 8px 0px #888888;">
         <div class="row">
             <div class="col-2">
-                <span style="font-size:40px;cursor:pointer; padding-left: 20px; color:orange;" onclick="openNav()">&#9776;</span>
+                <a href="../index.html"><i class="fa fa-home fa-3x" style="margin-top:5px ; margin-left:5px; color:#f3722c;"></i></a>
             </div>
             <div class="col-8">
                 <center><img src="./../img/logo/logo_name.png" style="height:30px;  margin-top:15px">
