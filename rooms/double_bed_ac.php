@@ -29,14 +29,6 @@ try {
 
 <body>
 
-    <div id="mySidenav" class="sidenav" style="z-index: 1000;">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#about">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#contact">Contact</a>
-    </div>
-
     <div style="height: 60px; position:fixed; z-index:100; background-color: white; width: 100%; box-shadow: 0px 1px 8px 0px #888888;">
         <div class="row">
             <div class="col-2">
