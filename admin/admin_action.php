@@ -15,11 +15,15 @@ if(isset($_POST['submit'])){
 }
 
 if(isset($_POST['logout'])){
-    if($_SESSION['login_status'] = 0){
+    try {
+        $_SESSION['login_status'] = 0;
         $_SESSION['success'] = "Successfully logged out!";
-    }
-    else{
+
+        header("Location: ./login.php");
+    } catch (\Throwable $th) {
         $_SESSION['fail'] = "Something went wrong. Please try again.";
+
+        header("Location: ./login.php");
+        //throw $th;
     }
-    header("Location: ./login.php");
 }
