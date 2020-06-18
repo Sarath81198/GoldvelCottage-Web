@@ -2,8 +2,7 @@
 $to = "sarathsekaran2007@gmail.com";
 $subject = "My subject";
 $txt = "Hello world!";
-$headers = "From: webmaster@example.com" . "\r\n" .
-"CC: somebodyelse@example.com";
+$headers = "From: contact@goldvelcottages.com";
 
 try {
 
