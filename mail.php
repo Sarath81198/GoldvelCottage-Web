@@ -4,10 +4,11 @@ $subject = "My subject";
 $txt = "Hello world!";
 $headers = "From: contact@goldvelcottages.com";
 
-try {
+$m =    mail($to, $subject, $txt, $headers);
 
-    mail($to, $subject, $txt, $headers);
-    echo 1;
-} catch (\Throwable $th) {
-    throw $th;
+if($m == true){
+    echo "Done";
+}
+else{
+    echo "nope";
 }
