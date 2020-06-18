@@ -5,4 +5,10 @@ $txt = "Hello world!";
 $headers = "From: webmaster@example.com" . "\r\n" .
 "CC: somebodyelse@example.com";
 
-mail($to,$subject,$txt,$headers);
+try {
+
+    mail($to, $subject, $txt, $headers);
+    echo 1;
+} catch (\Throwable $th) {
+    throw $th;
+}
