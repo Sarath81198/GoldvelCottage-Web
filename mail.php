@@ -1,4 +1,5 @@
 <?php
+error_reporting(-1);
 $to = "sarathsekaran2007@gmail.com";
 $subject = "My subject";
 $txt = "Hello world!";
